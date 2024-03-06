@@ -12,21 +12,25 @@ import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
-public class DemoAspects {
+public class MyServiceAspect {
 
+	// Define a pointcut for beans of type MyService
 	@Pointcut("bean(myService)")
 	void myServiceBean() {
-
 	}
 
-	@Before("myServiceBean()")
-	public void beforeInvocation() {
-		System.out.println("before invocation");
+	// Advice to be executed before the target method is invoked
+	@Before(value = "myServiceBean() && args(name,ageNo)", argNames = "name,ageNo")
+	public void beforeInvocation(String name, Integer ageNo) {
+		System.out.println("Before Invocation");
+		System.out.println("Name is %s".formatted(name));
+		System.out.println("Age is %s".formatted(ageNo));
 	}
 
-	@After("myServiceBean()")
-	public void afterInvocation() {
+	@After(value = "myServiceBean() && args(*,roomNo)", argNames = "roomNo")
+	public void afterInvocation(Integer roomNo) {
 		System.out.println("after invocation");
+		System.out.println("My room number is %s".formatted(roomNo));
 	}
 
 	@AfterReturning("myServiceBean()")

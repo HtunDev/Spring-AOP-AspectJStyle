@@ -10,11 +10,13 @@ import com.HAH.demo.service.MyService;
 @SpringJUnitConfig(classes = AppConfig.class)
 public class AspectJStyleTest {
 
-	@Autowired
-	private MyService myService;
-	
-	@Test
-	void demoTest() {
-		myService.HelloMethod();
-	}
+    @Autowired
+    private MyService myService;
+
+    @Test
+    void demoTest() {
+        myService.HelloMethod("Htun Aung Hlaing", 23);
+    }
 }
+
+

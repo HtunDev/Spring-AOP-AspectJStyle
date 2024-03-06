@@ -4,9 +4,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MyService {
-	
-	public void HelloMethod() {
-		System.out.println("This message from my service.");
-	}
 
+    public void HelloMethod(String name, int number) {
+        System.out.println("This message is from my service.");
+    }
 }
+
