@@ -10,6 +10,8 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
+import com.HAH.demo.dto.Student;
+
 @Aspect
 @Component
 public class MyServiceAspect {
@@ -33,9 +35,16 @@ public class MyServiceAspect {
 		System.out.println("My room number is %s".formatted(roomNo));
 	}
 
-	@AfterReturning("myServiceBean()")
-	public void afterReturning() {
+	@AfterReturning(
+			pointcut = "myServiceBean() && execution(com.HAH..Student *(..)) && args(name,QRnumber)",
+			argNames = "student,name,QRnumber",
+			returning = "student"
+			)
+	public void afterReturning(Student student,String name,Integer QRnumber) {
 		System.out.println("after returning");
+		System.out.println("Name is %s".formatted(name));
+		System.out.println("QR number is %d".formatted(QRnumber));
+		System.out.println(student);
 	}
 
 	@AfterThrowing("myServiceBean()")
