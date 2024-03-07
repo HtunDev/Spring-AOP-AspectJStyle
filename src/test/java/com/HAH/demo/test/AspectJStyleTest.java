@@ -15,7 +15,7 @@ public class AspectJStyleTest {
 
     @Test
     void demoTest() {
-        myService.HelloMethod("Htun Aung Hlaing", 23);
+        myService.divided(17, 0);
     }
 }
 
